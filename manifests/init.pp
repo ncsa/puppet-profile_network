@@ -1,8 +1,9 @@
-# @summary A short summary of the purpose of this class
-#
-# A description of what this class does
+# @summary Configure networking
 #
 # @example
 #   include profile_network
 class profile_network {
+  if $facts['has_mellanox'] {
+    include ::profile_network::mellanox
+  }
 }
