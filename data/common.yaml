@@ -1,1 +1,6 @@
---- {}
+---
+profile_network::mellanox::nic_cable_health::enabled: true
+profile_network::mellanox::nic_cable_health::telegraf_cfg:
+  data_format: "influx"
+  interval: "15m"
+  timeout: "30s"

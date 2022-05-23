@@ -29,8 +29,8 @@ The goal is that no paramters are required to be set. The default paramters shou
 
 ## Dependencies
 
-N/A
-
+* https://github.com/ncsa/puppet-telegraf
+* https://github.com/ncsa/puppet-profile_monitoring
 
 ## Reference
 
