@@ -1,6 +1,37 @@
 ---
+profile_network::benchmark::enabled: false
+profile_network::benchmark::firewall_cidrs:
+  - "127.0.0.1/32"  # EXAMPLE
+profile_network::benchmark::firewall_port: "18515"
+profile_network::benchmark::firewall_proto: "tcp"
+profile_network::benchmark::packages:
+  "infiniband-diags":
+  "libibverbs":
+  "libibverbs-utils":
+  "perftest":
+
+profile_network::lldp::enabled: false
+profile_network::lldp::packages:
+  "lldpad":
+profile_network::lldp::services:
+  "lldpad":
+    ensure: "running"
+    enable: true
+
 profile_network::mellanox::nic_cable_health::enabled: true
 profile_network::mellanox::nic_cable_health::telegraf_cfg:
   data_format: "influx"
   interval: "15m"
   timeout: "30s"
+
+profile_network::roce::enabled: false
+profile_network::roce::firewall_cidrs:
+  - "127.0.0.1/32"  # EXAMPLE
+profile_network::roce::firewall_port: "4791"
+profile_network::roce::firewall_proto: "udp"
+profile_network::roce::packages:
+  "infiniband-diags":
+  "iproute":
+  "libibverbs":
+  "libibverbs-utils":
+  "rdma-core":

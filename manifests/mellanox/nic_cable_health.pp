@@ -13,8 +13,7 @@
 class profile_network::mellanox::nic_cable_health (
   Boolean $enabled,
   Hash    $telegraf_cfg,
-){
-
+) {
   #
   # Templatized telegraf script
   #
@@ -24,9 +23,9 @@ class profile_network::mellanox::nic_cable_health (
   $script_full_path = "${script_path}/${script_base_name}${script_extension}"
 
   include profile_monitoring::telegraf
-  include ::telegraf
+  include telegraf
 
-  if ($enabled) and ($::profile_monitoring::telegraf::enabled) {
+  if ($enabled) and ($profile_monitoring::telegraf::enabled) {
     $ensure_parm = 'present'
   } else {
     $ensure_parm = 'absent'
@@ -46,7 +45,7 @@ class profile_network::mellanox::nic_cable_health (
   telegraf::input { $script_base_name :
     ensure      => $ensure_parm,
     plugin_type => 'exec',
-    options     => [ $telegraf_cfg_final ],
+    options     => [$telegraf_cfg_final],
     require     => File[$script_full_path],
   }
 
