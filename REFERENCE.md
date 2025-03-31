@@ -7,8 +7,11 @@
 ### Classes
 
 * [`profile_network`](#profile_network): Configure networking
-* [`profile_network::mellanox`](#profile_networkmellanox): Mellanox configuration
-* [`profile_network::mellanox::nic_cable_health`](#profile_networkmellanoxnic_cable_health): Mellanox health
+* [`profile_network::benchmark`](#profile_network--benchmark): Configure networking benchmarking and testing tools
+* [`profile_network::lldp`](#profile_network--lldp): Configure Link Layer Discovery Protocol (LLDP)
+* [`profile_network::mellanox`](#profile_network--mellanox): Mellanox configuration
+* [`profile_network::mellanox::nic_cable_health`](#profile_network--mellanox--nic_cable_health): Mellanox health
+* [`profile_network::roce`](#profile_network--roce): Configure support for RoCE v2
 
 ## Classes
 
@@ -24,7 +27,100 @@ Configure networking
 include profile_network
 ```
 
-### <a name="profile_networkmellanox"></a>`profile_network::mellanox`
+### <a name="profile_network--benchmark"></a>`profile_network::benchmark`
+
+Configure networking benchmarking and testing tools
+
+#### Examples
+
+##### 
+
+```puppet
+include profile_network::benchmark
+```
+
+#### Parameters
+
+The following parameters are available in the `profile_network::benchmark` class:
+
+* [`enabled`](#-profile_network--benchmark--enabled)
+* [`firewall_cidrs`](#-profile_network--benchmark--firewall_cidrs)
+* [`firewall_port`](#-profile_network--benchmark--firewall_port)
+* [`firewall_proto`](#-profile_network--benchmark--firewall_proto)
+* [`packages`](#-profile_network--benchmark--packages)
+
+##### <a name="-profile_network--benchmark--enabled"></a>`enabled`
+
+Data type: `Boolean`
+
+Boolean to define if this benchmark class is enabled
+
+##### <a name="-profile_network--benchmark--firewall_cidrs"></a>`firewall_cidrs`
+
+Data type: `Array`
+
+List of subnet CIDRs that benchmark testing allowed from
+
+##### <a name="-profile_network--benchmark--firewall_port"></a>`firewall_port`
+
+Data type: `String`
+
+Port that benchmark testing allowed to
+
+##### <a name="-profile_network--benchmark--firewall_proto"></a>`firewall_proto`
+
+Data type: `String`
+
+Network protocol of port used for benchmark testing
+
+##### <a name="-profile_network--benchmark--packages"></a>`packages`
+
+Data type: `Hash`
+
+Packages to install
+
+### <a name="profile_network--lldp"></a>`profile_network::lldp`
+
+lldpad is a Linux daemon that implements the Link Layer Discovery Protocol (LLDP)
+and Data Center Bridging capabilities exchange protocol (DCBX) on supported network
+interfaces, allowing devices to advertise information about themselves to directly
+connected peers.
+
+#### Examples
+
+##### 
+
+```puppet
+include profile_network::lldp
+```
+
+#### Parameters
+
+The following parameters are available in the `profile_network::lldp` class:
+
+* [`enabled`](#-profile_network--lldp--enabled)
+* [`packages`](#-profile_network--lldp--packages)
+* [`services`](#-profile_network--lldp--services)
+
+##### <a name="-profile_network--lldp--enabled"></a>`enabled`
+
+Data type: `Boolean`
+
+Boolean to define if this lldp class is enabled
+
+##### <a name="-profile_network--lldp--packages"></a>`packages`
+
+Data type: `Hash`
+
+Packages to install
+
+##### <a name="-profile_network--lldp--services"></a>`services`
+
+Data type: `Hash`
+
+Services to manage
+
+### <a name="profile_network--mellanox"></a>`profile_network::mellanox`
 
 Mellanox configuration
 
@@ -36,7 +132,7 @@ Mellanox configuration
 include profile_network::mellanox
 ```
 
-### <a name="profile_networkmellanoxnic_cable_health"></a>`profile_network::mellanox::nic_cable_health`
+### <a name="profile_network--mellanox--nic_cable_health"></a>`profile_network::mellanox::nic_cable_health`
 
 Configs Telegraf script that monitors Mellanox port and cable health
 
@@ -52,18 +148,73 @@ include profile_network::mellanox::nic_cable_health
 
 The following parameters are available in the `profile_network::mellanox::nic_cable_health` class:
 
-* [`enabled`](#enabled)
-* [`telegraf_cfg`](#telegraf_cfg)
+* [`enabled`](#-profile_network--mellanox--nic_cable_health--enabled)
+* [`telegraf_cfg`](#-profile_network--mellanox--nic_cable_health--telegraf_cfg)
 
-##### <a name="enabled"></a>`enabled`
+##### <a name="-profile_network--mellanox--nic_cable_health--enabled"></a>`enabled`
 
 Data type: `Boolean`
 
 Enable or disable this health check
 
-##### <a name="telegraf_cfg"></a>`telegraf_cfg`
+##### <a name="-profile_network--mellanox--nic_cable_health--telegraf_cfg"></a>`telegraf_cfg`
 
 Data type: `Hash`
 
 Hash of key:value pairs passed to telegraf::input as options
+
+### <a name="profile_network--roce"></a>`profile_network::roce`
+
+RoCEv2, or RDMA over Converged Ethernet version 2, is a network protocol that
+utilizes Remote Direct Memory Access (RDMA) capabilities to enable low-latency,
+high-throughput data transfers over Ethernet networks, specifically using UDP
+encapsulation.
+
+#### Examples
+
+##### 
+
+```puppet
+include profile_network::roce
+```
+
+#### Parameters
+
+The following parameters are available in the `profile_network::roce` class:
+
+* [`enabled`](#-profile_network--roce--enabled)
+* [`firewall_cidrs`](#-profile_network--roce--firewall_cidrs)
+* [`firewall_port`](#-profile_network--roce--firewall_port)
+* [`firewall_proto`](#-profile_network--roce--firewall_proto)
+* [`packages`](#-profile_network--roce--packages)
+
+##### <a name="-profile_network--roce--enabled"></a>`enabled`
+
+Data type: `Boolean`
+
+Boolean to define if this roce class is enabled
+
+##### <a name="-profile_network--roce--firewall_cidrs"></a>`firewall_cidrs`
+
+Data type: `Array`
+
+List of subnet CIDRs that RoCE v2 data transfer allowed from
+
+##### <a name="-profile_network--roce--firewall_port"></a>`firewall_port`
+
+Data type: `String`
+
+Port that RoCE v2 data transfer allowed to access
+
+##### <a name="-profile_network--roce--firewall_proto"></a>`firewall_proto`
+
+Data type: `String`
+
+Network protocol of port used for RoCE v2 data transfer
+
+##### <a name="-profile_network--roce--packages"></a>`packages`
+
+Data type: `Hash`
+
+Packages to install
 
