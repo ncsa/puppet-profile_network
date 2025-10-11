@@ -25,6 +25,15 @@ profile_network::mellanox::nic_cable_health::telegraf_cfg:
   timeout: "30s"
 
 profile_network::roce::enabled: false
+profile_network::roce::env_vars:
+  UCX_IB_TRAFFIC_CLASS: "104"
+  UCX_NET_DEVICES: "%{facts.ucx_net_devices}"
+  UCX_TLS: "%{facts.ucx_tls}"
+  OMPI_MCA_btl: "^vader,tcp,openib"
+  OMPI_MCA_hwloc_base_binding_policy: "core"
+  OMPI_MCA_pml: "ucx"
+  OMPI_MCA_ras_base_verbose: "10"
+  OMPI_MCA_rmaps_base_mapping_policy: "numa"
 profile_network::roce::firewall_cidrs:
   - "127.0.0.1/32"  # EXAMPLE
 profile_network::roce::firewall_port: "4791"

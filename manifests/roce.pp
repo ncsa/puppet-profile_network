@@ -8,6 +8,9 @@
 # @param enabled
 #   Boolean to define if this roce class is enabled
 #
+# @param env_vars
+#   Key value pairs of environment variables to set
+#
 # @param firewall_cidrs
 #   List of subnet CIDRs that RoCE v2 data transfer allowed from
 #
@@ -24,6 +27,7 @@
 #   include profile_network::roce
 class profile_network::roce (
   Boolean $enabled,
+  Hash    $env_vars,
   Array   $firewall_cidrs,
   String  $firewall_port,
   String  $firewall_proto,
@@ -42,6 +46,14 @@ class profile_network::roce (
         action => 'accept',
         source => $cidr,
       }
+    }
+
+    file { '/etc/profile.d/roce_env.sh':
+      ensure  => file,
+      mode    => '0644',
+      owner   => 'root',
+      group   => 'root',
+      content => template("${module_name}/roce_env.sh.erb"),
     }
 
     # future: configure rdma_cm & rdma_ucm
