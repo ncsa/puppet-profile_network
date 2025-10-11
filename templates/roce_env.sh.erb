@@ -1,0 +1,6 @@
+# This file is managed by Puppet.
+# Set environment variables for RoCE
+#   e.g. UCX and OMPI_MCA (OpenMPI).
+<% @env_vars.each do |key, value| -%>
+export <%= key %>=<%= value %>
+<% end -%>

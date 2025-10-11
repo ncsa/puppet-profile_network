@@ -183,6 +183,7 @@ include profile_network::roce
 The following parameters are available in the `profile_network::roce` class:
 
 * [`enabled`](#-profile_network--roce--enabled)
+* [`env_vars`](#-profile_network--roce--env_vars)
 * [`firewall_cidrs`](#-profile_network--roce--firewall_cidrs)
 * [`firewall_port`](#-profile_network--roce--firewall_port)
 * [`firewall_proto`](#-profile_network--roce--firewall_proto)
@@ -193,6 +194,12 @@ The following parameters are available in the `profile_network::roce` class:
 Data type: `Boolean`
 
 Boolean to define if this roce class is enabled
+
+##### <a name="-profile_network--roce--env_vars"></a>`env_vars`
+
+Data type: `Hash`
+
+Key value pairs of environment variables to set
 
 ##### <a name="-profile_network--roce--firewall_cidrs"></a>`firewall_cidrs`
 
