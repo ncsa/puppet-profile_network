@@ -27,6 +27,18 @@ Configure networking
 include profile_network
 ```
 
+#### Parameters
+
+The following parameters are available in the `profile_network` class:
+
+* [`required_pkgs`](#-profile_network--required_pkgs)
+
+##### <a name="-profile_network--required_pkgs"></a>`required_pkgs`
+
+Data type: `Hash`
+
+Base packages required for this module
+
 ### <a name="profile_network--benchmark"></a>`profile_network::benchmark`
 
 Configure networking benchmarking and testing tools
