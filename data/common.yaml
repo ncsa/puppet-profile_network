@@ -24,6 +24,9 @@ profile_network::mellanox::nic_cable_health::telegraf_cfg:
   interval: "15m"
   timeout: "30s"
 
+profile_network::required_pkgs:
+  "pciutils":
+
 profile_network::roce::enabled: false
 profile_network::roce::env_vars:
   UCX_IB_TRAFFIC_CLASS: "104"
